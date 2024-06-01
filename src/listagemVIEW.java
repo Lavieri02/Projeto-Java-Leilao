@@ -220,7 +220,7 @@ public class listagemVIEW extends javax.swing.JFrame {
     public DefaultTableModel montarTabela() {
         String[] colunas = {"ID", "NOME", "VALOR", " STATUS"};
 
-        // Criamos a tabela
+    
         DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
 
         List<ProdutosDTO> lista = ProdutosDAO.listarProdutos();
