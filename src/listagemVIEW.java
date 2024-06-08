@@ -146,9 +146,9 @@ public class listagemVIEW extends javax.swing.JFrame {
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
         String id = id_produto_venda.getText();
         
-        ProdutosDAO produtosdao = new ProdutosDAO();
+        //ProdutosDAO produtosdao = new ProdutosDAO();
         
-        //produtosdao.venderProduto(Integer.parseInt(id));
+        ProdutosDAO.venderProduto(Integer.parseInt(id));
        
     }//GEN-LAST:event_btnVenderActionPerformed
 
@@ -220,7 +220,7 @@ public class listagemVIEW extends javax.swing.JFrame {
     public DefaultTableModel montarTabela() {
         String[] colunas = {"ID", "NOME", "VALOR", " STATUS"};
 
-    
+        // Criamos a tabela
         DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
 
         List<ProdutosDTO> lista = ProdutosDAO.listarProdutos();
