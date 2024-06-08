@@ -83,6 +83,42 @@ public class ProdutosDAO {
         }
         return lista;
     }
+     public static List<ProdutosDTO> listarVendas() {
+        //Declaração da variável lista que será retornada
+        List<ProdutosDTO> lista = new ArrayList<ProdutosDTO>();
+
+        try {
+
+            conectaDAO conexao = new conectaDAO();
+            conexao.connectDB();
+
+            String sql = "SELECT * FROM produtos WHERE status LIKE ?";
+            PreparedStatement consulta = conexao.getConn().prepareStatement(sql);
+             consulta.setString(1, "%" + "Vendido" + "%");
+
+            ResultSet resposta = consulta.executeQuery();
+
+            while (resposta.next()) {
+                ProdutosDTO f = new ProdutosDTO();
+
+                f.setId(resposta.getInt("id"));
+                f.setNome(resposta.getString("nome"));
+
+                f.setValor(resposta.getInt("valor"));
+                f.setStatus(resposta.getString("status"));
+
+                lista.add(f);
+            }
+
+            //Desconectar do banco
+            conexao.desconnectDB();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"""
+                               Erro ao listar os registros do banco de dados!
+                                          Contate o suporte!""");
+        }
+        return lista;
+    }
 
      public static boolean venderProduto(int id) {
         try {
